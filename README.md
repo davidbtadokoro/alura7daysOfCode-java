@@ -20,3 +20,7 @@ The activity is spread in 7 daily challenges.
 ## Day 1
 
 __Objective__: Make an HTTP request to the API and display the data in the terminal.
+
+## Day 2
+
+__Objective__: Parse the JSON from the HTTP response containing the Top 250 Movies.
