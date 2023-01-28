@@ -6,13 +6,38 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
 import java.util.List;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.stream.Stream;
+import java.util.stream.Collectors;
 
 public class ImdbApiConsumer {
 
   private String apiKey;
   private String moviesJson;
+
+  public static void main(String[] args) {
+    if (args.length != 1) {
+      System.out.println("ERROR: Missing API key!");
+      System.out.println("USAGE: java ImdbApiConsumer <api-key>");
+      System.exit(1);
+    }
+    
+    ImdbApiConsumer imdbApiConsumer = new ImdbApiConsumer(args[0]);
+    imdbApiConsumer.sendTop250MoviesRequest();
+
+    String[] movieArray = imdbApiConsumer.parseMoviesJson();
+
+    List<String> titles = imdbApiConsumer.parseTitles(movieArray);
+    titles.forEach(System.out::println);
+
+    List<String> urlImages = imdbApiConsumer.parseUrlImages(movieArray);
+    urlImages.forEach(System.out::println);
+
+    List<String> years = imdbApiConsumer.parseYears(movieArray);
+    years.forEach(System.out::println);
+
+    List<String> ratings = imdbApiConsumer.parseRatings(movieArray);
+    ratings.forEach(System.out::println);
+  }
 
   public ImdbApiConsumer(String apiKey) {
     this.apiKey = apiKey;
@@ -39,86 +64,34 @@ public class ImdbApiConsumer {
   }
 
   public String[] parseMoviesJson() {
-    return moviesJson
-        .substring(moviesJson.indexOf('[') + 1, moviesJson.indexOf(']'))
+    String moviesJsonInsideBrackets = moviesJson
+        .substring(moviesJson.indexOf('[') + 1, moviesJson.indexOf(']'));
+    return moviesJsonInsideBrackets
+        .substring(1, moviesJsonInsideBrackets.length() - 1)
         .split("\\},\\{");
   }
-
+  
   public List<String> parseTitles(String[] moviesArray) {
-    List<String> moviesList = Arrays.asList(moviesArray);
-    List<String> titles = new ArrayList<>();
-
-    for (String movie : moviesList) {
-      String title = movie.split("\",\"")[2]
-          .replace("title\":\"", "");
-      titles.add(title);
-    }
-
-    return titles;
-  }
-
-  public List<String> parseYears(String[] moviesArray) {
-    List<String> moviesList = Arrays.asList(moviesArray);
-    List<String> years = new ArrayList<>();
-
-    for (String movie : moviesList) {
-      String year = movie.split("\",\"")[4]
-          .replace("year\":\"", "");
-      years.add(year);
-    }
-
-    return years;
-  }
-
-  public List<String> parseUrlImages(String[] moviesArray) {
-    List<String> moviesList = Arrays.asList(moviesArray);
-    List<String> urlImages = new ArrayList<>();
-
-    for (String movie : moviesList) {
-      String urlImage = movie.split("\",\"")[5]
-          .replace("image\":\"", "");
-      urlImages.add(urlImage);
-    }
-
-    return urlImages;
-  }
-
-  public List<String> parseRatings(String[] moviesArray) {
-    List<String> moviesList = Arrays.asList(moviesArray);
-    List<String> ratings = new ArrayList<>();
-
-    for (String movie : moviesList) {
-      String rating = movie.split("\",\"")[7]
-          .replace("imDbRating\":\"", "");
-      ratings.add(rating);
-    }
-
-    return ratings;
+    return parseAttribute(moviesArray, 2);
   }
   
-  public static void main(String[] args) {
-    if (args.length != 1) {
-      System.out.println("ERROR: Missing API key!");
-      System.out.println("USAGE: java ImdbApiConsumer <api-key>");
-      System.exit(1);
-    }
+  public List<String> parseYears(String[] moviesArray) {
+    return parseAttribute(moviesArray, 4);
+  }
+  
+  public List<String> parseUrlImages(String[] moviesArray) {
+    return parseAttribute(moviesArray, 5);
+  }
+  
+  public List<String> parseRatings(String[] moviesArray) {
+    return parseAttribute(moviesArray, 7);
+  }
 
-    ImdbApiConsumer imdbApiConsumer = new ImdbApiConsumer(args[0]);
-    imdbApiConsumer.sendTop250MoviesRequest();
-
-    String[] movieArray = imdbApiConsumer.parseMoviesJson();
-
-    List<String> titles = imdbApiConsumer.parseTitles(movieArray);
-    titles.forEach(System.out::println);
-
-    List<String> urlImages = imdbApiConsumer.parseUrlImages(movieArray);
-    urlImages.forEach(System.out::println);
-
-    List<String> years = imdbApiConsumer.parseYears(movieArray);
-    years.forEach(System.out::println);
-
-    List<String> ratings = imdbApiConsumer.parseRatings(movieArray);
-    ratings.forEach(System.out::println);
+  private List<String> parseAttribute(String[] movieArray, int position) {
+    return Stream.of(movieArray)
+        .map(e -> e.split("\",\"")[position])
+        .map(e -> e.split(":\"")[1])
+        .collect(Collectors.toList());
   }
 
 }
