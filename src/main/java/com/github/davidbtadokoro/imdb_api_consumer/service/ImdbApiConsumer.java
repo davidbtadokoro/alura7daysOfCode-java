@@ -9,35 +9,30 @@ import java.net.http.HttpResponse.BodyHandlers;
 public class ImdbApiConsumer {
 
   private String apiKey;
-  private HttpClient client;
-  private HttpRequest request;
-  private HttpResponse<String> response;
+  private String top250MoviesJSON;
 
   public ImdbApiConsumer(String apiKey) {
     this.apiKey = apiKey;
-    this.client = HttpClient.newBuilder().build();
   }
 
   public void sendTop250MoviesRequest() {
     try {
-      request = HttpRequest
+      HttpClient client = HttpClient.newBuilder().build();
+      HttpRequest request = HttpRequest
           .newBuilder()
           .uri(new URI(String.format("https://imdb-api.com/en/API/Top250Movies/%s", apiKey)))
           .GET()
           .build();
-      response = client.send(request, BodyHandlers.ofString());
+      HttpResponse<String> response = client.send(request, BodyHandlers.ofString());
+      top250MoviesJSON = response.body();
     }
     catch (Exception e) {
       e.printStackTrace();
     }
   }
 
-  public int getResponseStatusCode() {
-    return response.statusCode();
-  }
-
-  public String getResponseBody() {
-    return response.body();
+  public String getTop250MoviesJSON() {
+    return top250MoviesJSON;
   }
   
   public static void main(String[] args) {
@@ -49,7 +44,7 @@ public class ImdbApiConsumer {
 
     ImdbApiConsumer imdbApiConsumer = new ImdbApiConsumer(args[0]);
     imdbApiConsumer.sendTop250MoviesRequest();
-    System.out.println(imdbApiConsumer.getResponseStatusCode() + " " + imdbApiConsumer.getResponseBody());
+    System.out.println(imdbApiConsumer.getTop250MoviesJSON());
   }
 
 }
