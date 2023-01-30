@@ -18,7 +18,6 @@ public class ImdbApiConsumer {
 
   private ObjectMapper mapper = getDefaultObjectMapper();
   private String apiKey;
-  private String moviesJson;
 
   public static void main(String[] args) {
     if (args.length != 1) {
@@ -28,9 +27,8 @@ public class ImdbApiConsumer {
     }
     
     ImdbApiConsumer imdbApiConsumer = new ImdbApiConsumer(args[0]);
-    imdbApiConsumer.sendTop250MoviesRequest();
-
-    List<Movie> movies = imdbApiConsumer.getMoviesList();
+    String moviesJson = imdbApiConsumer.requestTop250MoviesJson();
+    List<Movie> movies = imdbApiConsumer.getMoviesList(moviesJson);
     movies.forEach(System.out::println);
   }
 
@@ -43,7 +41,7 @@ public class ImdbApiConsumer {
     this.apiKey = apiKey;
   }
 
-  public void sendTop250MoviesRequest() {
+  public String requestTop250MoviesJson() {
     try {
       HttpClient client = HttpClient.newBuilder().build();
       HttpRequest request = HttpRequest
@@ -52,18 +50,15 @@ public class ImdbApiConsumer {
           .GET()
           .build();
       HttpResponse<String> response = client.send(request, BodyHandlers.ofString());
-      moviesJson = response.body();
+      return response.body();
     }
     catch (Exception e) {
       e.printStackTrace();
+      return "The request generated an exception";
     }
   }
 
-  public String getMoviesJson() {
-    return moviesJson;
-  }
-
-  public List<Movie> getMoviesList() {
+  public List<Movie> getMoviesList(String moviesJson) {
     try {
       String moviesJsonArray = mapper.readTree(moviesJson).get("items").toString();
       return mapper.readValue(moviesJsonArray, new TypeReference<List<Movie>>(){});
