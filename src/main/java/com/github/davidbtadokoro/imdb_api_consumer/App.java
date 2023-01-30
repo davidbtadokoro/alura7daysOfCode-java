@@ -8,7 +8,7 @@ import java.util.List;
 
 import com.github.davidbtadokoro.imdb_api_consumer.model.Movie;
 import com.github.davidbtadokoro.imdb_api_consumer.service.ImdbApiConsumer;
-import com.github.davidbtadokoro.imdb_api_consumer.service.MoviesListHTMLGenerator;
+import com.github.davidbtadokoro.imdb_api_consumer.service.ImdbTop250HTMLGenerator;
 
 public class App {
   
@@ -24,8 +24,8 @@ public class App {
     List<Movie> movies = imdbApiConsumer.getMoviesList(moviesJson);
     
     try (Writer writer = new PrintWriter(new File("imdbTop250Movies.html"))) {
-      MoviesListHTMLGenerator htmlGenerator = new MoviesListHTMLGenerator(writer);
-      htmlGenerator.generate(movies);
+      ImdbTop250HTMLGenerator htmlGenerator = new ImdbTop250HTMLGenerator(writer);
+      htmlGenerator.generateHTML(movies);
     } catch (IOException e) {
       e.printStackTrace();
     }
