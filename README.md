@@ -28,3 +28,7 @@ __Objective__: Parse the JSON from the HTTP response containing the Top 250 Movi
 ## Day 3
 
 __Objective__: Model the Movie entity.
+
+## Day 4
+
+__Objective__: Generate a HTML page of the movies obtained from the API call. 
