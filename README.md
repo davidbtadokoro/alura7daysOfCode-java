@@ -24,3 +24,7 @@ __Objective__: Make an HTTP request to the API and display the data in the termi
 ## Day 2
 
 __Objective__: Parse the JSON from the HTTP response containing the Top 250 Movies.
+
+## Day 3
+
+__Objective__: Model the Movie entity.
