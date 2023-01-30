@@ -1,0 +1,38 @@
+{
+  "items": [
+    {
+      "id": "anId1",
+      "rank": "1",
+      "title": "Great Movie",
+      "fullTitle": "Great Movie (2020)",
+      "year": "2020",
+      "image": "anUrl1",
+      "crew": "Me, Myself and I",
+      "imDbRating": "9.9",
+      "imDbRatingCount": "999999"
+    },
+    {
+      "id": "anId2",
+      "rank": "2",
+      "title": "Good Movie",
+      "fullTitle": "Good Movie (2021)",
+      "year": "2021",
+      "image": "anUrl2",
+      "crew": "Me, Myself and I",
+      "imDbRating": "8.0",
+      "imDbRatingCount": "999999"
+    },
+    {
+      "id": "anId3",
+      "rank": "3",
+      "title": "Bad Movie",
+      "fullTitle": "Bad Movie (2022)",
+      "year": "2022",
+      "image": "anUrl3",
+      "crew": "Me, Myself and I",
+      "imDbRating": "2.0",
+      "imDbRatingCount": "999999"
+    }
+  ],
+  "errorMessage": ""
+}
