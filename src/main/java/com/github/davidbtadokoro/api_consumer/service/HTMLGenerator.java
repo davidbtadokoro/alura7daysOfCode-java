@@ -1,10 +1,10 @@
-package com.github.davidbtadokoro.imdb_api_consumer.service;
+package com.github.davidbtadokoro.api_consumer.service;
 
 import java.io.IOException;
 import java.io.Writer;
 import java.util.List;
 
-import com.github.davidbtadokoro.imdb_api_consumer.model.Content;
+import com.github.davidbtadokoro.api_consumer.model.Content;
 
 public class HTMLGenerator {
 

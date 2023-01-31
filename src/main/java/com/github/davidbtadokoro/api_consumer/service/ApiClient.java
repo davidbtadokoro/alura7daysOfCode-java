@@ -1,4 +1,4 @@
-package com.github.davidbtadokoro.imdb_api_consumer.service;
+package com.github.davidbtadokoro.api_consumer.service;
 
 public interface ApiClient {
 

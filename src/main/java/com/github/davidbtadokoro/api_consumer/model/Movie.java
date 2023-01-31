@@ -1,4 +1,4 @@
-package com.github.davidbtadokoro.imdb_api_consumer.model;
+package com.github.davidbtadokoro.api_consumer.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

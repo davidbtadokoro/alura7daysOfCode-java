@@ -1,4 +1,4 @@
-package com.github.davidbtadokoro.imdb_api_consumer;
+package com.github.davidbtadokoro.api_consumer;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -10,8 +10,8 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.github.davidbtadokoro.imdb_api_consumer.model.Movie;
-import com.github.davidbtadokoro.imdb_api_consumer.service.ImdbMoviesJsonParser;
+import com.github.davidbtadokoro.api_consumer.model.Movie;
+import com.github.davidbtadokoro.api_consumer.service.ImdbMoviesJsonParser;
 
 public class ImdbMoviesJsonParserTest {
 

@@ -1,4 +1,4 @@
-package com.github.davidbtadokoro.imdb_api_consumer.service;
+package com.github.davidbtadokoro.api_consumer.service;
 
 import java.util.Collections;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.davidbtadokoro.imdb_api_consumer.model.Movie;
+import com.github.davidbtadokoro.api_consumer.model.Movie;
 
 public class ImdbMoviesJsonParser implements JsonParser {
 

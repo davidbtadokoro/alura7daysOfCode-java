@@ -1,4 +1,4 @@
-package com.github.davidbtadokoro.imdb_api_consumer;
+package com.github.davidbtadokoro.api_consumer;
 
 import java.io.File;
 import java.io.IOException;
@@ -6,10 +6,10 @@ import java.io.PrintWriter;
 import java.io.Writer;
 import java.util.List;
 
-import com.github.davidbtadokoro.imdb_api_consumer.model.Movie;
-import com.github.davidbtadokoro.imdb_api_consumer.service.ImdbApiClient;
-import com.github.davidbtadokoro.imdb_api_consumer.service.ImdbMoviesJsonParser;
-import com.github.davidbtadokoro.imdb_api_consumer.service.HTMLGenerator;
+import com.github.davidbtadokoro.api_consumer.model.Movie;
+import com.github.davidbtadokoro.api_consumer.service.HTMLGenerator;
+import com.github.davidbtadokoro.api_consumer.service.ImdbApiClient;
+import com.github.davidbtadokoro.api_consumer.service.ImdbMoviesJsonParser;
 
 public class App {
 

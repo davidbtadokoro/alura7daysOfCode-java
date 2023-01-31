@@ -1,4 +1,4 @@
-package com.github.davidbtadokoro.imdb_api_consumer.service;
+package com.github.davidbtadokoro.api_consumer.service;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -14,6 +14,7 @@ public class ImdbApiClient implements ApiClient {
     this.apiKey = apiKey;
   }
 
+  // Request for the IMDB Top 250 Movies
   public String getBody() {
     try {
       HttpClient client = HttpClient.newBuilder().build();
