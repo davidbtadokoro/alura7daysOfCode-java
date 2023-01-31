@@ -55,3 +55,7 @@ __Objective__: Generate a HTML page of the movies obtained from the API call.
 ### Day 5
 
 __Objective__: Encapsulate the HTTP call to the API and the JSON parsing in other classes.
+
+### Day 6
+
+__Objective__: Make the code polymorphic to other API calls.
