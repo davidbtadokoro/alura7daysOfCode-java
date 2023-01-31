@@ -50,4 +50,8 @@ __Objective__: Model the Movie entity.
 
 ### Day 4
 
-__Objective__: Generate a HTML page of the movies obtained from the API call. 
+__Objective__: Generate a HTML page of the movies obtained from the API call.
+
+### Day 5
+
+__Objective__: Encapsulate the HTTP call to the API and the JSON parsing in other classes.
