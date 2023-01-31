@@ -11,31 +11,30 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.github.davidbtadokoro.imdb_api_consumer.model.Movie;
-import com.github.davidbtadokoro.imdb_api_consumer.service.ImdbApiConsumer;
+import com.github.davidbtadokoro.imdb_api_consumer.service.ImdbMoviesJsonParser;
 
-public class ImdbApiConsumerTest {
+public class ImdbMoviesJsonParserTest {
 
-  private String apiKey = "fakeApiKey";
-  private ImdbApiConsumer imdbApiConsumer;
+  private ImdbMoviesJsonParser moviesJsonParser;
   private String moviesJsonSample;
 
   @BeforeEach
   void setUp() throws IOException {
     Path moviesSamplePath = Path.of("src/test/resources/json/moviesSample.json");
     moviesJsonSample = Files.readString(moviesSamplePath);
-    imdbApiConsumer = new ImdbApiConsumer(this.apiKey);
+    moviesJsonParser = new ImdbMoviesJsonParser(moviesJsonSample);
   }
 
   @Test
   void getMoviesListShouldReturnCorrectNumberOfMovies() {
-    List<Movie> moviesSample = imdbApiConsumer.getMoviesList(moviesJsonSample);
+    List<Movie> moviesSample = moviesJsonParser.getMoviesListFromJson();
 
     assertEquals(3, moviesSample.size());
   }
 
   @Test
   void getMoviesListShouldCorrectlyDesserializeAMovie() {
-    List<Movie> moviesSample = imdbApiConsumer.getMoviesList(moviesJsonSample);
+    List<Movie> moviesSample = moviesJsonParser.getMoviesListFromJson();
 
     Movie movieSample1 = moviesSample.get(0);
     assertEquals("Great Movie", movieSample1.getTitle());
