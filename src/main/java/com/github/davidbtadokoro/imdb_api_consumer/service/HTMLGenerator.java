@@ -4,14 +4,11 @@ import java.io.IOException;
 import java.io.Writer;
 import java.util.List;
 
-import com.github.davidbtadokoro.imdb_api_consumer.model.Movie;
+import com.github.davidbtadokoro.imdb_api_consumer.model.Content;
 
-public class ImdbTop250HTMLGenerator {
+public class HTMLGenerator {
 
-  private static String preamble = """
-        <!DOCTYPE html>
-        <html>
-      """;
+  private static String preamble = "<!DOCTYPE html>";
   private static String head = """
       <head>
         <meta charset=\"utf-8\">
@@ -29,29 +26,30 @@ public class ImdbTop250HTMLGenerator {
         </div>
       </div>
       """;
-      
+
   private Writer writer;
 
-  public ImdbTop250HTMLGenerator(Writer writer) {
+  public HTMLGenerator(Writer writer) {
     this.writer = writer;
   }
 
-  public void generateHTML(List<Movie> movies) {
+  public void generateHTML(List<? extends Content> contents) {
     try {
       writer.write(preamble);
+      writer.write("<html>");
       writer.write(head);
-      writeBody(movies);
+      writeBody(contents);
       writer.write("</html>");
     } catch (Exception e) {
       e.printStackTrace();
     }
   }
 
-  private void writeBody(List<Movie> movies) throws IOException {
+  private void writeBody(List<? extends Content> contents) throws IOException {
     writer.write("<body>");
-    for (Movie movie : movies) {
-      writer.write(String.format(divTemplate, movie.getTitle(), movie.getImage(), movie.getTitle(),
-          movie.getImDbRating(), movie.getYear()));
+    for (Content content : contents) {
+      writer.write(String.format(divTemplate, content.getTitle(), content.getUrlImage(),
+          content.getTitle(), content.getRating(), content.getYear()));
     }
     writer.write("</body>");
   }

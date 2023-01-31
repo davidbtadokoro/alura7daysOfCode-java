@@ -8,7 +8,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.davidbtadokoro.imdb_api_consumer.model.Movie;
 
-public class ImdbMoviesJsonParser {
+public class ImdbMoviesJsonParser implements JsonParser {
 
   private ObjectMapper mapper = getDefaultObjectMapper();
   private String moviesJson;
@@ -22,11 +22,10 @@ public class ImdbMoviesJsonParser {
     this.moviesJson = moviesJson;
   }
 
-  public List<Movie> getMoviesListFromJson() {
+  public List<Movie> parse() {
     try {
       String moviesJsonArray = mapper.readTree(moviesJson).get("items").toString();
-      return mapper.readValue(moviesJsonArray, new TypeReference<List<Movie>>() {
-      });
+      return mapper.readValue(moviesJsonArray, new TypeReference<List<Movie>>() {});
     } catch (Exception e) {
       e.printStackTrace();
       return Collections.emptyList();

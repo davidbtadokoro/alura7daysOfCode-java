@@ -6,8 +6,8 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.github.davidbtadokoro</groupId>
-  <artifactId>imdb-api-consumer</artifactId>
-  <version>0.2</version>
+  <artifactId>content-api-consumer</artifactId>
+  <version>0.3-SNAPSHOT</version>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -48,7 +48,7 @@
   </dependencies>
 
   <build>
-    <finalName>imdb-api-consumer</finalName>
+    <finalName>content-api-consumer</finalName>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -80,7 +80,7 @@
           </execution>
         </executions>
         <configuration>
-          <finalName>imdb-api-consumer</finalName>
+          <finalName>content-api-consumer</finalName>
           <appendAssemblyId>false</appendAssemblyId>
           <descriptorRefs>
             <descriptorRef>jar-with-dependencies</descriptorRef>
