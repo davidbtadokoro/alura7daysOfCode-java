@@ -1,6 +1,6 @@
 package com.github.davidbtadokoro.api_consumer.model;
 
-public class Comic implements Content {
+public class Comic implements Content, Comparable<Comic> {
 
   private String title;
   private String year;
@@ -35,6 +35,11 @@ public class Comic implements Content {
   @Override
   public String toString() {
     return String.format("Título: %s | Ano: %s", title, year);
+  }
+
+  @Override
+  public int compareTo(Comic anotherComic) {
+    return this.year.compareTo(anotherComic.year);
   }
   
 }

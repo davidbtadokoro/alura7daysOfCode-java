@@ -4,9 +4,11 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Writer;
+import java.util.Comparator;
 import java.util.List;
 
 import com.github.davidbtadokoro.api_consumer.model.Comic;
+import com.github.davidbtadokoro.api_consumer.model.Content;
 import com.github.davidbtadokoro.api_consumer.model.Movie;
 import com.github.davidbtadokoro.api_consumer.service.HTMLGenerator;
 import com.github.davidbtadokoro.api_consumer.service.ImdbApiClient;
@@ -28,6 +30,7 @@ public class App {
 
     ImdbMoviesJsonParser moviesJsonParser = new ImdbMoviesJsonParser(moviesJson);
     List<Movie> movies = moviesJsonParser.parse();
+    movies.sort(Comparator.comparing(Content::getYear));
 
     try (Writer writer = new PrintWriter(new File("imdbTop250Movies.html"))) {
       HTMLGenerator htmlGenerator = new HTMLGenerator(writer);
@@ -41,6 +44,7 @@ public class App {
     
     MarvelComicsJsonParser comicsJsonParser = new MarvelComicsJsonParser(comicsJson);
     List<Comic> comics = comicsJsonParser.parse();
+    comics.sort(Comparator.comparing(Content::getTitle));
 
     try (Writer writer = new PrintWriter(new File("spiderManFirst100Comics.html"))) {
       HTMLGenerator htmlGenerator = new HTMLGenerator(writer);
