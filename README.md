@@ -4,7 +4,7 @@ This repository is for the final activity of the [Java Formation](https://cursos
 
 ## The Project
 
-The project is an [IMDB API](https://imdb-api.com/api) consumer to display the Top 250 Movies (and maybe TV Shows) in a HTML format.
+The project is an [IMDB API](https://imdb-api.com/api) and [Marvel API](https://developer.marvel.com/) consumer to display information about movies and comics in a HTML format.
 
 The activity is spread in 7 daily challenges.
 
@@ -22,17 +22,17 @@ The activity is spread in 7 daily challenges.
 
 1. Build the project using `mvn clean package` in the root of the repository (where the `pom.xml` is located).
 
-2. Run the `imdb-api-consumer.jar` file generated inside the `target` directory passing an IMDB API key as argument.
+2. Run the `api-consumer.jar` file generated inside the `target` directory passing an IMDB API key, an Marvel public key and an Marvel private key as arguments.
 
-3. Open the `imdbTop250Movies.html` file generated with your favorite browser.
+3. Open the `imdbTop250Movies.html` and `spiderManFirst100Comics.html` files generated with your favorite browser.
 
 ### Using an IDE
 
-Generally, you are going yo configure your Main Class as `com.github.davidbtadokoro.imdb_api_consumer.App`, set an IMDB API key as argument and run the application through your IDE.
+Generally, you are going yo configure your Main Class as `com.github.davidbtadokoro.api_consumer.App`, set an IMDB API key, an Marvel public key and an Marvel private key as arguments and run the application through your IDE.
 
-Specifically, using VSCode, open the `.vscode/launch.json` and set the field `mainClass` as `com.github.davidbtadokoro.imdb_api_consumer.App` and the field `args` as `[<imdb-api-key>]`.
+Specifically, using VSCode, open the `.vscode/launch.json` and set the field `mainClass` as `com.github.davidbtadokoro.api_consumer.App` and the field `args` as `["<imdb-api-key>", "<marvel-public-key>", "<marvel-private-key>"]`.
 
-In any case, a HTML file named `imdbTop250Movies.html` will be generated and you can open it with a browser.
+In any case, HTML files named `imdbTop250Movies.html` and `spiderManFirst100Comics.html` will be generated and you can open it with a browser.
 
 ## Challenges
 

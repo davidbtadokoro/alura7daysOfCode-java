@@ -1,41 +1,40 @@
 package com.github.davidbtadokoro.api_consumer.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-public class Movie implements Content {
+public class Comic implements Content {
 
   private String title;
   private String year;
   private String urlImage;
-  private String rating;
+  
+  public Comic(String title, String year, String urlImage) {
+    this.title = title;
+    this.year = year;
+    this.urlImage = urlImage;
+  }
 
   @Override
-  @JsonProperty("title")
   public String getTitle() {
     return title;
   }
 
   @Override
-  @JsonProperty("year")
   public String getYear() {
     return year;
   }
 
   @Override
-  @JsonProperty("image")
   public String getUrlImage() {
     return urlImage;
   }
 
   @Override
-  @JsonProperty("imDbRating")
   public String getRating() {
-    return rating;
+    return "N/A";
   }
 
   @Override
   public String toString() {
-    return String.format("Titulo: %s | Ano: %s | Nota: %s", title, year, rating);
+    return String.format("Título: %s | Ano: %s", title, year);
   }
-
+  
 }

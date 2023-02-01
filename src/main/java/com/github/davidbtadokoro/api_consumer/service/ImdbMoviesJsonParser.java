@@ -22,6 +22,7 @@ public class ImdbMoviesJsonParser implements JsonParser {
     this.moviesJson = moviesJson;
   }
 
+  @Override
   public List<Movie> parse() {
     try {
       String moviesJsonArray = mapper.readTree(moviesJson).get("items").toString();
