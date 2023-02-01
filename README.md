@@ -59,3 +59,7 @@ __Objective__: Encapsulate the HTTP call to the API and the JSON parsing in othe
 ### Day 6
 
 __Objective__: Make the code polymorphic to other API calls.
+
+### Day 7
+
+__Objective__: Create more ways to sort the lists other than the returned one from the API call.
